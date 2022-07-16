@@ -27,12 +27,15 @@ void setup(){
   setup_timer();
   //set pins as outputs
   pinMode(30, OUTPUT);
+  Serial.begin(9600);
 }
 
 ISR(TIMER4_COMPA_vect){//timer1 interrupt 1Hz toggles pin 13 (LED)
  if (led_counter == int(1960/2/led_frequency)) { // 10 Hz
    led_value = !led_value;
    digitalWrite(LED, led_value);
+   Serial.print("Valor do LED: ");
+   Serial.println(led_value);
    led_counter = 0;
  }
 
